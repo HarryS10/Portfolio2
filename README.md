@@ -9,8 +9,8 @@ Designed as an interactive dashboard experience with an integrated AI assistant 
 
 ## 🌐 Live Demo
 
-🔗 **Live Site:** [https://your-deployed-link.com](https://your-deployed-link.com)
-📂 **Repository:** [https://github.com/your-username/Portfolio-2](https://github.com/your-username/Portfolio-2)
+🔗 **Live Site:** [https://portfolio2-5ypj.onrender.com](https://portfolio2-5ypj.onrender.com)
+📂 **Repository:** [https://github.com/HarryS10/Portfolio2](https://github.com/HarryS10/Portfolio2)
 
 ---
 
