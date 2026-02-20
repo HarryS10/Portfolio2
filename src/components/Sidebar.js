@@ -12,14 +12,6 @@ export default function Sidebar({ activeTab, setActiveTab }) {
         { id: 'contact', label: 'Contact', icon: Mail },
     ];
 
-    const scrollToSection = (id) => {
-        setActiveTab(id);
-        const element = document.getElementById(id);
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
-
     return (
         <aside className="sidebar">
             <div className="profile-section">
@@ -45,7 +37,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
                         <div
                             key={tab.id}
                             className={`nav-item ${activeTab === tab.id ? 'active' : ''}`}
-                            onClick={() => scrollToSection(tab.id)}
+                            onClick={() => setActiveTab(tab.id)}
                         >
                             <Icon size={20} />
                             <span>{tab.label}</span>

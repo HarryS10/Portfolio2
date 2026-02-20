@@ -6,12 +6,11 @@ import { Mail, Linkedin, Phone } from 'lucide-react';
 
 export default function Contact() {
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
+    <motion.div
+      initial={{ opacity: 0, scale: 0.98 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.98 }}
       transition={{ duration: 0.5 }}
-      style={{ paddingBottom: '80px' }}
     >
       <div className="section-header">
         <h2 className="section-title">Contact Me</h2>
