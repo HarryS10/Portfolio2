@@ -4,10 +4,10 @@ export const resumeData = {
     summary: "Second-Year Computer Science & Engineering undergraduate with experience in Java, Python, C and Object-Oriented Programming. Currently extending expertise in software development and modern development practices.",
     contact: {
         email: "shrikantsinha4974@gmail.com",
-        phone: "+91 7003435630",
+        phone: "7003435630",
         location: "Howrah, India",
         hackerrank: "https://www.hackerrank.com/profile/shrikantsinha491",
-        linkedin: "https://linkedin.com/in/shashwat-sinha-04628a360",
+        linkedin: "https://linkedin.com/in/shashwatsinha-04628a360?utm_source=share_via&utm_content=profile&utm_medium=member_android",
         github: "https://github.com/HarryS10"
     },
     skills: [

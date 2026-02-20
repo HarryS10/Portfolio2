@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { resumeData } from '../data/resumeData';
-import { Folder } from 'lucide-react';
+import { Folder, Github } from 'lucide-react';
 
 export default function Projects() {
     return (
@@ -24,7 +24,12 @@ export default function Projects() {
                             <div className="project-icon">
                                 <Folder size={32} />
                             </div>
-                            <span className="text-secondary" style={{ fontSize: '14px', color: 'var(--text-tertiary)' }}>{project.period}</span>
+                            <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+                                <a href={resumeData.contact.github} target="_blank" rel="noreferrer" style={{ color: 'var(--text-secondary)' }}>
+                                    <Github size={20} />
+                                </a>
+                                <span className="text-secondary" style={{ fontSize: '14px', color: 'var(--text-tertiary)' }}>{project.period}</span>
+                            </div>
                         </div>
 
                         <h3 style={{ fontSize: '20px', marginBottom: '16px', color: 'var(--text-primary)' }}>{project.name}</h3>
