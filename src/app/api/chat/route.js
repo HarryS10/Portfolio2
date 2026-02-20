@@ -37,11 +37,29 @@ Be concise but friendly.
 `;
 
 export async function POST(req) {
+    let API_KEY = process.env.GROQ_API_KEY;
+
+    if (!API_KEY) {
+        console.error("CRITICAL ERROR: GROQ_API_KEY is not set in environment variables.");
+        return NextResponse.json(
+            { error: "API Key not configured. Please contact the administrator." },
+            { status: 500 }
+        );
+    }
+
     try {
         const { messages } = await req.json();
 
+        if (!messages || !Array.isArray(messages)) {
+            console.error("Bad Request: Messages array is missing or invalid.");
+            return NextResponse.json(
+                { error: "Invalid request format." },
+                { status: 400 }
+            );
+        }
+
         const groq = new Groq({
-            apiKey: process.env.GROQ_API_KEY || 'dummy_key',
+            apiKey: API_KEY,
         });
 
         // Inject system prompt into the messages for Groq
@@ -50,16 +68,30 @@ export async function POST(req) {
             ...messages
         ];
 
+        console.log(`Sending request to Groq API with ${groqMessages.length} messages...`);
+
         const chatCompletion = await groq.chat.completions.create({
             messages: groqMessages,
-            model: "llama3-8b-8192", // Fast and capable model
+            model: "llama3-70b-8192", // User requested valid latest model
             temperature: 0.5,
             max_tokens: 1024,
         });
 
-        return NextResponse.json({ reply: chatCompletion.choices[0]?.message?.content || "" });
+        const reply = chatCompletion.choices[0]?.message?.content;
+
+        if (!reply) {
+            console.error("Groq API returned an empty response.");
+            throw new Error("Empty response from AI model.");
+        }
+
+        console.log("Successfully received response from Groq.");
+
+        return NextResponse.json({ reply: reply });
     } catch (error) {
-        console.error("Groq API Error:", error);
-        return NextResponse.json({ error: "Failed to fetch response." }, { status: 500 });
+        console.error("Groq API Integration Error:", error);
+        return NextResponse.json(
+            { error: "Our AI assistant is currently experiencing high load. Please try again later." },
+            { status: 500 }
+        );
     }
 }

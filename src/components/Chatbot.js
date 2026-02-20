@@ -31,6 +31,7 @@ export default function Chatbot() {
         setIsLoading(true);
 
         try {
+            console.log("Sending chat request...");
             const response = await fetch('/api/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -40,12 +41,15 @@ export default function Chatbot() {
             const data = await response.json();
 
             if (response.ok) {
+                console.log("Response received.");
                 setMessages(prev => [...prev, { role: 'assistant', content: data.reply }]);
             } else {
-                setMessages(prev => [...prev, { role: 'assistant', content: "Sorry, I'm having trouble connecting right now." }]);
+                console.error("API Error Response:", data);
+                setMessages(prev => [...prev, { role: 'assistant', content: data.error || "Sorry, I'm having trouble connecting right now." }]);
             }
         } catch (error) {
-            setMessages(prev => [...prev, { role: 'assistant', content: "Sorry, an error occurred." }]);
+            console.error("Fetch Error:", error);
+            setMessages(prev => [...prev, { role: 'assistant', content: "Sorry, a network error occurred." }]);
         } finally {
             setIsLoading(false);
         }
