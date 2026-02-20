@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import Groq from 'groq-sdk';
-import { resumeData } from '../../../data/resumeData';
+import { resumeData } from '@/data/resumeData';
 
 // A clean text representation of the resume for the AI prompt
 const resumeContext = `
@@ -13,6 +13,8 @@ Location: ${resumeData.contact.location}
 Email: ${resumeData.contact.email}
 GitHub: ${resumeData.contact.github}
 LinkedIn: ${resumeData.contact.linkedin}
+HackerRank: ${resumeData.contact.hackerrank}
+Phone: +91 ${resumeData.contact.phone}
 
 Skills:
 ${resumeData.skills.map(skill => `- ${skill.category}: ${skill.items.join(', ')}`).join('\n')}
@@ -21,16 +23,25 @@ Languages:
 ${resumeData.spokenLanguages.map(lang => `- ${lang.language} (${lang.proficiency})`).join('\n')}
 
 Education:
-${resumeData.education.map(edu => `- ${edu.degree} at ${edu.institution} (${edu.period})`).join('\n')}
+${resumeData.education.map(edu =>
+    `- ${edu.degree} at ${edu.institution} (${edu.period})
+  Courses: ${edu.courses?.join(', ') || 'N/A'}
+  ${edu.score ? `Score: ${edu.score}` : ''}`
+).join('\n')}
 
 Experience:
 ${resumeData.experience.map(exp => `- ${exp.role} at ${exp.company} (${exp.period}): ${exp.description}`).join('\n')}
 
 Organizations:
-${resumeData.organizations.map(org => `- ${org.name} (${org.role}, ${org.period})`).join('\n')}
+${resumeData.organizations.map(org =>
+    `- ${org.name} (${org.role}, ${org.period}) | ${org.link}`
+).join('\n')}
 
 Projects:
 ${resumeData.projects.map(proj => `- ${proj.name} (${proj.period}): ${proj.description.join(' ')} Tech: ${proj.techStack.join(', ')}`).join('\n')}
+
+Interests:
+${resumeData.interests.join(', ')}
 
 If someone asks about something not covered here, politely state that you do not have that information and suggest they contact the owner through their email or LinkedIn.
 Be concise but friendly.
@@ -72,7 +83,7 @@ export async function POST(req) {
 
         const chatCompletion = await groq.chat.completions.create({
             messages: groqMessages,
-            model: "llama3-70b-8192", // User requested valid latest model
+            model: "llama-3.1-8b-instant",
             temperature: 0.5,
             max_tokens: 1024,
         });
