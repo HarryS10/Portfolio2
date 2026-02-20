@@ -2,10 +2,6 @@ import { NextResponse } from 'next/server';
 import Groq from 'groq-sdk';
 import { resumeData } from '../../../data/resumeData';
 
-const groq = new Groq({
-    apiKey: process.env.GROQ_API_KEY,
-});
-
 // A clean text representation of the resume for the AI prompt
 const resumeContext = `
 You are an AI assistant on the portfolio website of ${resumeData.name}.
@@ -43,6 +39,10 @@ Be concise but friendly.
 export async function POST(req) {
     try {
         const { messages } = await req.json();
+
+        const groq = new Groq({
+            apiKey: process.env.GROQ_API_KEY || 'dummy_key',
+        });
 
         // Inject system prompt into the messages for Groq
         const groqMessages = [

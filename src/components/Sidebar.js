@@ -9,14 +9,26 @@ export default function Sidebar({ activeTab, setActiveTab }) {
         { id: 'experience', label: 'Experience', icon: Briefcase },
         { id: 'projects', label: 'Projects', icon: Code },
         { id: 'skills', label: 'Skills', icon: TerminalSquare },
+        { id: 'contact', label: 'Contact', icon: Mail },
     ];
+
+    const scrollToSection = (id) => {
+        setActiveTab(id);
+        const element = document.getElementById(id);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
 
     return (
         <aside className="sidebar">
             <div className="profile-section">
-                <div className="profile-pic">
-                    {resumeData.name.charAt(0)}
-                </div>
+                <img
+                    src="/MyPic.jpg"
+                    alt="Profile Picture"
+                    className="profile-pic"
+                    style={{ objectFit: 'cover' }}
+                />
                 <h1 className="profile-name">{resumeData.name}</h1>
                 <p className="profile-role">{resumeData.role}</p>
 
@@ -33,7 +45,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
                         <div
                             key={tab.id}
                             className={`nav-item ${activeTab === tab.id ? 'active' : ''}`}
-                            onClick={() => setActiveTab(tab.id)}
+                            onClick={() => scrollToSection(tab.id)}
                         >
                             <Icon size={20} />
                             <span>{tab.label}</span>
