@@ -1,73 +1,199 @@
-# Portfolio Dashboard
+# 🚀 Shashwat Sinha – Portfolio Dashboard
 
-A sleek, responsive, highly-modern personal portfolio website designed as an interactive dashboard. Built with **Next.js**, **React**, **Vanilla CSS**, and featuring an integrated AI Chatbot powered by **Groq**.
+A modern, AI-powered personal portfolio built with **Next.js App Router**.
+Designed as an interactive dashboard experience with an integrated AI assistant that can answer questions about my resume in real time.
 
-![Portfolio Concept](/README.md) <!-- Replace with an actual screenshot in future -->
+> ⚡ Built to showcase both frontend craftsmanship and backend AI integration skills.
 
-## Features
+---
 
-- 📱 **Dashboard Layout**: A premium interface featuring a sticky sidebar and tabbed navigation.
-- 🎨 **Glassmorphism Design**: Custom Vanilla CSS (no Tailwind needed) using backdrop filters, CSS variables, and modern aesthetics.
-- 🌙 **Dark Mode Default**: Hand-picked color palette for a sleek developer experience.
-- 🤖 **AI Assistant**: A floating, minimizable chatbot that knows your resume data and can answer questions contextually using the `llama3-8b-8192` model via the Groq API.
-- ⚡ **Optimized Performance**: Statically generated pages with Next.js App Router.
+## 🌐 Live Demo
 
-## Tech Stack
+🔗 **Live Site:** [https://your-deployed-link.com](https://your-deployed-link.com)
+📂 **Repository:** [https://github.com/your-username/Portfolio-2](https://github.com/your-username/Portfolio-2)
 
-- **Framework**: [Next.js](https://nextjs.org/) (App Router)
-- **UI & Components**: React, [Framer Motion](https://www.framer.com/motion/) (Animations), [Lucide React](https://lucide.dev/) (Icons)
-- **Styling**: Vanilla CSS (`globals.css`)
-- **AI Integration**: [Groq SDK](https://groq.com/)
+---
 
-## Getting Started
+## ✨ Key Features
 
-### Prerequisites
+* 🧭 **Interactive Dashboard UI**
+  Sticky sidebar navigation with tab-based content switching.
 
-You need [Node.js](https://nodejs.org/) installed (v18.x or later recommended).
+* 🎨 **Modern Glassmorphism Design**
+  Custom Vanilla CSS using backdrop filters, CSS variables, and responsive layouts.
 
-### 1. Clone & Install
-Clone the repository and install the dependencies:
+* 🌙 **Dark Mode by Default**
+  Carefully selected developer-centric color palette.
+
+* 🤖 **AI Resume Assistant (Groq Powered)**
+  A floating, minimizable chatbot trained on structured resume data.
+
+    * Injected system prompt from `resumeData.js`
+    * Uses Groq LLM via server-side API route
+    * Handles fallback errors gracefully
+
+* ⚡ **Optimized Performance**
+
+    * Next.js App Router
+    * Server-side API route for AI requests
+    * Clean component-based architecture
+
+---
+
+## 🧠 How the AI Chatbot Works
+
+1. Resume data is stored in:
+
+   ```
+   src/data/resumeData.js
+   ```
+
+2. The backend API route:
+
+   ```
+   src/app/api/chat/route.js
+   ```
+
+    * Injects structured resume context
+    * Sends conversation to Groq LLM
+    * Returns AI-generated response
+
+3. The frontend chatbot component:
+
+   ```
+   src/components/Chatbot.js
+   ```
+
+    * Manages conversation state
+    * Sends user messages to `/api/chat`
+    * Displays AI response
+
+This ensures:
+
+* No resume hallucination
+* Controlled AI knowledge scope
+* Secure API key handling (server-side only)
+
+---
+
+## 🛠 Tech Stack
+
+| Layer      | Technology             |
+| ---------- | ---------------------- |
+| Framework  | Next.js (App Router)   |
+| Frontend   | React                  |
+| Styling    | Vanilla CSS            |
+| Animations | Framer Motion          |
+| Icons      | Lucide React           |
+| Backend    | Next.js API Route      |
+| AI         | Groq SDK (LLaMA Model) |
+
+---
+
+## 📦 Installation & Setup
+
+### 1️⃣ Clone the Repository
+
 ```bash
-git clone <your-repo-url>
-cd <your-repo-name>
+git clone https://github.com/your-username/Portfolio-2.git
+cd Portfolio-2
 npm install
 ```
 
-### 2. Configure Environment Variables
-Create a `.env.local` file in the root of the project and add your Groq API key:
+---
+
+### 2️⃣ Environment Variables
+
+Create a `.env.local` file:
+
 ```env
 GROQ_API_KEY=your_groq_api_key_here
 ```
 
-### 3. Run the Development Server
-Start the Next.js development server:
+⚠️ This file is ignored via `.gitignore`.
+
+---
+
+### 3️⃣ Run Development Server
+
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit:
 
-## Project Structure
+```
+http://localhost:3000
+```
 
-- `src/app/`: Next.js App Router pages and global layouts.
-- `src/app/api/chat/`: API endpoint for the Groq Chatbot.
-- `src/components/`: Reusable React components (`Sidebar.js`, `Overview.js`, `Chatbot.js`, etc.).
-- `src/data/`: Contains `resumeData.js`, the parsed JSON representation used across the application.
+---
 
-## Customization
+## 🚀 Deployment (Render)
 
-To easily change your portfolio data, simply edit the `src/data/resumeData.js` file. The entire dashboard and the AI Chatbot's system prompt will automatically update to reflect the new text!
+1. Push project to GitHub.
+2. Create a new **Web Service** on Render.
+3. Connect the repository.
+4. Add environment variable:
 
-## Deployment (Render)
+```
+GROQ_API_KEY
+```
 
-This project is fully configured for deployment on [Render](https://render.com/).
+5. Deploy.
 
-1. Push this repository to GitHub.
-2. Sign in to Render and click **New+** -> **Blueprint**.
-3. Connect your GitHub repository.
-4. Render will automatically detect the `render.yaml` configuration file and set up a Node Web Service.
-5. In the Render dashboard for the new service, navigate to the **Environment** tab and add your `GROQ_API_KEY` to the Secret Files/Variables.
-6. The app will automatically build and deploy!
+---
 
-## License
-MIT
+## 📁 Project Structure
+
+```
+src/
+ ├── app/
+ │   ├── api/chat/route.js
+ │   ├── layout.js
+ │   └── page.js
+ ├── components/
+ │   ├── Sidebar.js
+ │   ├── Overview.js
+ │   ├── Chatbot.js
+ └── data/
+     └── resumeData.js
+```
+
+---
+
+## 🎯 Customization
+
+To update portfolio content:
+
+Edit:
+
+```
+src/data/resumeData.js
+```
+
+The dashboard UI and chatbot context update automatically.
+
+---
+
+## 🔐 Security Notes
+
+* API key is stored server-side only
+* `.env.local` is ignored in Git
+* Chatbot does not expose sensitive system prompt
+* Resume context is controlled to prevent hallucinations
+
+---
+
+## 📈 Future Improvements
+
+* Add message streaming for faster responses
+* Add analytics tracking
+* Add typing animation indicator
+* Add PDF resume download button
+* Improve SEO metadata
+
+---
+
+## 📄 License
+
+MIT License
