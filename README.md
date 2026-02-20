@@ -58,5 +58,16 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 To easily change your portfolio data, simply edit the `src/data/resumeData.js` file. The entire dashboard and the AI Chatbot's system prompt will automatically update to reflect the new text!
 
+## Deployment (Render)
+
+This project is fully configured for deployment on [Render](https://render.com/).
+
+1. Push this repository to GitHub.
+2. Sign in to Render and click **New+** -> **Blueprint**.
+3. Connect your GitHub repository.
+4. Render will automatically detect the `render.yaml` configuration file and set up a Node Web Service.
+5. In the Render dashboard for the new service, navigate to the **Environment** tab and add your `GROQ_API_KEY` to the Secret Files/Variables.
+6. The app will automatically build and deploy!
+
 ## License
 MIT
