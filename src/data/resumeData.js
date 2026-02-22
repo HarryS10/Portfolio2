@@ -7,7 +7,7 @@ export const resumeData = {
         phone: "7003435630",
         location: "Howrah, India",
         hackerrank: "https://www.hackerrank.com/profile/shrikantsinha491",
-        linkedin: "https://linkedin.com/in/shashwatsinha-04628a360?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+        linkedin: "https://www.linkedin.com/in/shashwat-sinha10a3?utm_source=share_via&utm_content=profile&utm_medium=member_android",
         github: "https://github.com/HarryS10"
     },
     skills: [
